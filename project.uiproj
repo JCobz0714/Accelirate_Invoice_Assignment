@@ -1,0 +1,6 @@
+{
+  "ProjectType": "Process",
+  "Name": "Accelirate_Invoice_Assignment document processing automation",
+  "Description": "",
+  "MainFile": "Main.xaml"
+}
