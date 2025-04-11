@@ -80,9 +80,12 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1654,1242" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap:VirtualizedContainerService.HintSize="1654,1290" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="sampleFiles" />
       <Variable x:TypeArguments="upr:ILocalResource" Name="downloadedFile" />
@@ -97,20 +100,21 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:ManualTrigger Result="{x:Null}" DisplayName="Manual Trigger" sap:VirtualizedContainerService.HintSize="486,77" sap2010:WorkflowViewState.IdRef="ManualTrigger_1" />
     <ucas:ListStorageFiles Filter="{x:Null}" TimeoutMS="{x:Null}" Directory="/" DisplayName="List Storage Files" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="486,226" sap2010:WorkflowViewState.IdRef="ListStorageFiles_3" Recursive="True" Result="[StorageBucket]" StorageBucketName="Accelirate_Invoice_Assignment" />
-    <ui:ForEach x:TypeArguments="ucas:StorageFileInfo" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="486,916" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[StorageBucket]">
+    <ui:ForEach x:TypeArguments="ucas:StorageFileInfo" CurrentIndex="{x:Null}" DisplayName="For Each currentItem" sap:VirtualizedContainerService.HintSize="486,964" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[StorageBucket]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="ucas:StorageFileInfo">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ucas:StorageFileInfo" Name="currentItem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484,745" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484,843" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[currentItem]" />
             <ucas:DownloadStorageFile Destination="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Download Storage File" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_3" Path="currentItem.FileFullPath" Result="[file]" StorageBucketName="Accelirate_Invoice_Assignment" />
-            <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisaseib:InvoicesAccelirateInvoicesV1" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="fa148a49-6b16-f011-8b3d-6045bdd39e1e" ExtractionResults="[accelirateInvoicesDocumentData]" FileInput="[file]" sap:VirtualizedContainerService.HintSize="450,295" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_3" ProjectId="f2940557-b715-f011-8b3d-000d3a1be4f4" TimeoutInSeconds="3600">
+            <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisaseib:InvoicesAccelirateInvoicesV1" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="fa148a49-6b16-f011-8b3d-6045bdd39e1e" ExtractionResults="[accelirateInvoicesDocumentData]" FileInput="[file]" sap:VirtualizedContainerService.HintSize="450,220" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_3" ProjectId="f2940557-b715-f011-8b3d-000d3a1be4f4" TimeoutInSeconds="3600">
               <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
                 <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                   <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
